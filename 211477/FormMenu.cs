@@ -23,15 +23,12 @@ namespace _211477
             Banco.CriarBanco();
         }
 
-        private void cidadesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void cidadesToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             FrmCidade form = new FrmCidade();
             form.Show();
         }
+
+      
     }
 }

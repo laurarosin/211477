@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
-using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace _211477
 {
-    internal class Banco
+    public class Banco
     {
         public static MySqlConnection Conexao;
 
@@ -19,7 +15,7 @@ namespace _211477
 
         public static DataTable datTabela;
 
-        public static void AbriConexao()
+        public static void AbrirConexao()
         {
             try
             {
@@ -29,19 +25,18 @@ namespace _211477
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message,"Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);    
+                MessageBox.Show(e.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         public static void FecharConexao()
         {
             try
             {
                 Conexao.Close();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                MessageBox.Show(e.Message,"Erro", MessageBoxButtons.OK,MessageBoxIcon.Error);   
+                MessageBox.Show(e.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -49,22 +44,26 @@ namespace _211477
         {
             try
             {
-                AbriConexao();
 
-                Comando = new MySqlCommand("CREATE DATABASE IF NOT EXISTS vendas, USE vendas", Conexao);
+                AbrirConexao();
+
+                Comando = new MySqlCommand("CREATE DATABASE IF NOT EXISTS vendas; USE vendas", Conexao);
+
                 Comando.ExecuteNonQuery();
 
-                Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS Cidades" + "(id integer auto_increment primary key, " + "nome char (40)," + "uf char (02))", Conexao);
+                Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS Cidades" +
+                    "(id integer auto_increment primary key, " +
+                    "nome char(40), " +
+                    "uf char(02))", Conexao);
+
                 Comando.ExecuteNonQuery();
 
-
-                FecharConexao();
+              FecharConexao();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-      
     }
 }
