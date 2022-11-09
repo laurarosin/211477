@@ -20,7 +20,7 @@ namespace _211477
 
         private void FormMenu_Load(object sender, EventArgs e)
         {
-            Banco.CriarBanco();
+            
         }
 
         private void cidadesToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -29,6 +29,9 @@ namespace _211477
             form.Show();
         }
 
-      
+        private void FormMenu_Load_1(object sender, EventArgs e)
+        {
+            Banco.CriarBanco();
+        }
     }
 }

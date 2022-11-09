@@ -25,7 +25,7 @@ namespace _211477.Model
             try
             {
                 Banco.AbrirConexao();
-                Banco.Comando = new MySqlCommand("INSERT INTO cidade ( nome, uf) VALUES (@nome,@uf)", Banco.Conexao);
+                Banco.Comando = new MySqlCommand("INSERT INTO cidades ( nome, uf) VALUES (@nome,@uf)", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", Nome);
                 Banco.Comando.Parameters.AddWithValue("@uf", uf);
 
@@ -43,7 +43,7 @@ namespace _211477.Model
             try
             {
                 Banco.AbrirConexao();
-                Banco.Comando = new MySqlCommand("Update cidades set nome = @nome, uf, = @uf where id = @id", Banco.Conexao);
+                Banco.Comando = new MySqlCommand("Update cidades set nome = @nome, uf = @uf where id = @id", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", Nome);
                 Banco.Comando.Parameters.AddWithValue("@uf", uf);
                 Banco.Comando.Parameters.AddWithValue("@id",ID);
