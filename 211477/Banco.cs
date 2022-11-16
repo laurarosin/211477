@@ -64,6 +64,22 @@ namespace _211477
             {
                 MessageBox.Show(e.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS Categorias id integer auto_increment primary key, categoria char(20))", Conexao);
+
+            Comando.ExecuteNonQuery();
+
+            Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS Clientes" +
+                                        "(Id integer auto_increment primary key," + "" +
+                                        "nome char(40)," +
+                                        "idCidade integer," +
+                                        "dataNasc date," +
+                                        "renda decimal (10,2)," +
+                                        "cpf char(14)," +
+                                        "foto varchar (100)," +
+                                        "venda boolean)", Conexao);
+
+            Comando.ExecuteNonQuery();
         }
     }
 }
