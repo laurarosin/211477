@@ -68,10 +68,62 @@ namespace _211477.View
         private void btnIncluir_Click(object sender, EventArgs e)
         {
             if (txtNome.Text == "") return;
-            cl = new Cliente(); 
+            cl = new Cliente()
             {
-       
+                Nome = txtNome.Text,    
+                idCidade = (int)cboCidade.SelectedValue,
+                dataNasc = dtpDataNasc.Value,
+                renda = double.Parse(txtRenda.Text),
+                cpf = mskCPF.Text,
+                foto = picFOTO.ImageLocation,
+                venda = chkVenda.Checked
+            };
+            cl.Incluir();
+            limpaControles();
+            carregarGrid("");
+        }
+
+        private void dgvCliente_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvClientes.Rows.Count > 0)
+            {
+                txtID.Text = dgvClientes.CurrentRow.Cells["id"].Value.ToString();
+                txtNome.Text = dgvClientes.CurrentRow.Cells["nome"].Value.ToString();
+                cboCidade.Text = dgvClientes.CurrentRow.Cells["cidade"].Value.ToString();
+                txtUF.Text = dgvClientes.CurrentRow.Cells["uf"].Value.ToString();
+                chkVenda.Text = dgvClientes.CurrentRow.Cells["venda"].ToString();
+                mskCPF.Text = dgvClientes.CurrentRow.Cells["cpf"].Value.ToString();
+                dtpDataNasc.Text = dgvClientes.CurrentRow.Cells["dataNasc"].Value.ToString();
+                txtRenda.Text= dgvClientes.CurrentRow.Cells["renda"].Value.ToString();
+                picFOTO.Text = dgvClientes.CurrentRow.Cells["foto"].Value.ToString();
+
             }
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "") return;
+            cl = new Cliente()
+            {
+                ID = int.Parse(txtID.Text),
+                Nome = txtNome.Text,
+                idCidade = (int)cboCidade.SelectedValue,
+                dataNasc = dtpDataNasc.Value,
+                renda = double.Parse(txtRenda.Text),
+                cpf = mskCPF.Text,
+                foto = picFOTO.ImageLocation,
+                venda = chkVenda.Checked
+
+            };
+            cl.Alterar();
+            limpaControles();
+            carregarGrid("");
+
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
