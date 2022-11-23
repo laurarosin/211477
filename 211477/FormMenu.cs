@@ -18,10 +18,6 @@ namespace _211477
             InitializeComponent();
         }
 
-        private void FormMenu_Load(object sender, EventArgs e)
-        {
-            
-        }
 
         private void cidadesToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -33,5 +29,12 @@ namespace _211477
         {
             Banco.CriarBanco();
         }
+
+        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCliente form = new FrmCliente();
+            form.Show();
+        }
+
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using _211477.Model;
 
 namespace _211477.Model
 {
@@ -108,7 +109,6 @@ namespace _211477.Model
                 return null;    
             }
         }
-
         
 
 

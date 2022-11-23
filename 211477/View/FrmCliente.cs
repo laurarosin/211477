@@ -123,7 +123,41 @@ namespace _211477.View
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            
+            if (txtID.Text=="") return;
+            if (MessageBox.Show("Deseja excluir o cliente?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                cl = new Cliente()
+                {
+                    ID = int.Parse(txtID.Text)
+                };
+                cl.Excluir();
+                limpaControles();
+                carregarGrid("");
+
+                
+            }
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            limpaControles();
+            carregarGrid("");
+
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            carregarGrid(txtPesquisa.Text);
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        void carregarGrid(string gridName)
+        {
+
         }
     }
 }
