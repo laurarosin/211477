@@ -32,9 +32,10 @@ namespace _211477.Model
         {
             try
             {
+
                 Banco.Conexao.Open();
                 Banco.Comando = new MySqlCommand
-                    ("INSERT INTO clientes (nome, idCidade, dataNasc, renda, cpf, foto, venda)" +
+                    ("INSERT INTO clientes (nome, idCidade, dataNasc, renda, cpf, foto, venda) " +
                     "VALUES (@nome, @idCidade, @dataNasc, @renda, @cpf, @foto, @venda)", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", Nome);
                 Banco.Comando.Parameters.AddWithValue("@idCidade", idCidade);
@@ -95,18 +96,19 @@ namespace _211477.Model
         {
             try
             {
-                Banco.Comando = new MySqlCommand("SELECT cl *, ci.nome cidade," +
-                    "ci.uf FROM clientes cl inner join Cidades ci on (ci.id = cl.idCidade where cl.nome like? Nome order by cl.nome", Banco.Conexao);
+                Banco.Comando = new MySqlCommand("SELECT cl.*, ci.nome cidade, " +
+                   "ci.uf FROM Clientes cl inner join Cidades ci on (ci.id = cl.idCidade) " +
+                   "where cl.nome like ?Nome order by cl.nome", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@Nome", Nome + "%");
-                Banco.Adaptador = new MySqlDataAdapter(Banco.Comando);  
-                Banco.datTabela = new DataTable();  
+                Banco.Adaptador = new MySqlDataAdapter(Banco.Comando);
+                Banco.datTabela = new DataTable();
                 Banco.Adaptador.Fill(Banco.datTabela);
                 return Banco.datTabela;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;    
+                return null;
             }
         }
         

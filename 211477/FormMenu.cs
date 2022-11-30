@@ -30,11 +30,10 @@ namespace _211477
             Banco.CriarBanco();
         }
 
-        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void clienteToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             FrmCliente form = new FrmCliente();
             form.Show();
         }
-
     }
 }

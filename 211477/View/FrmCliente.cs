@@ -33,6 +33,7 @@ namespace _211477.View
 
             dgvClientes.Columns["idCidade"].Visible = false;
             dgvClientes.Columns["foto"].Visible = false;
+            
         }
 
         void limpaControles()
@@ -47,13 +48,21 @@ namespace _211477.View
             picFOTO.ImageLocation = "";
             chkVenda.Checked = false;   
         }
+        void carregarGrid(string pesquisa)
+        {
+            cl = new Cliente()
+            {
+                Nome = pesquisa
+            };
+            dgvClientes.DataSource = cl.Consultar();
+        }
 
         private void cboCidade_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboCidade.SelectedIndex == -1)
             {
                 DataRowView reg = (DataRowView)cboCidade.SelectedItem;
-                txtUF.Text = reg["uf"].ToString();
+               // txtUF.Text = reg["uf"].ToString();//
             }
         }
 
@@ -67,10 +76,12 @@ namespace _211477.View
 
         private void btnIncluir_Click(object sender, EventArgs e)
         {
-            if (txtNome.Text == "") return;
+            if (txtNome.Text == "") 
+                return;
+
             cl = new Cliente()
             {
-                Nome = txtNome.Text,    
+                Nome = txtNome.Text,
                 idCidade = (int)cboCidade.SelectedValue,
                 dataNasc = dtpDataNasc.Value,
                 renda = double.Parse(txtRenda.Text),
@@ -79,6 +90,7 @@ namespace _211477.View
                 venda = chkVenda.Checked
             };
             cl.Incluir();
+
             limpaControles();
             carregarGrid("");
         }
@@ -154,10 +166,6 @@ namespace _211477.View
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Close();
-        }
-        void carregarGrid(string gridName)
-        {
-
         }
     }
 }
